@@ -29,19 +29,19 @@ jobs:
     - name: Build Docker image
       run: |
         echo run build
-        docker build . -t chriskm12/sad:10101
+        #docker build . -t chriskm12/sad:10101
     - name: push docker
       run: |
         echo run push
-        docker push chriskm12/sad:10101
+        #docker push chriskm12/sad:10101
 
-    - name: Run Docker container
-      run: docker run -d -p 8080:8080 --name my-python-app chriskm12/sad:10101
+    - name: Build and run Docker Compose
+      run: docker-compose up -d --build
 
     - name: Wait for the container to start
       run: |
         for i in {1..10}; do
-          if [ "$(docker inspect -f {{.State.Running}} my-python-app)" == "true" ]; then
+          if [ "$(docker inspect -f {{.State.Running}} my-python-app_my-python-app_1)" == "true" ]; then
             echo "Container is running"
             exit 0
           fi
@@ -49,10 +49,9 @@ jobs:
           sleep 5
         done
         echo "Container did not start in time"
-        docker logs my-python-app
+        docker-compose logs
         exit 1
+
     - name: Display Docker container logs
       if: always()
-      run: docker logs my-python-app
-    - run: |
-        docker logs my-python-app
+      run: docker-compose logs
