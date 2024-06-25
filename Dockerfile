@@ -17,13 +17,13 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
 RUN pip install mss requests
 
 # Create a working directory
-# WORKDIR /usr/src/app
+WORKDIR /usr/src/app
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
 # Expose ports (if needed)
-EXPOSE 9292
+EXPOSE 8080
 RUN google-chrome --version
 # Run the Python script when the container launches
 # ENTRYPOINT ["python", "main.py"]
