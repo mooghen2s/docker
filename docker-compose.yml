@@ -4,4 +4,8 @@ services:
   my-python-app:
     build: .
     ports:
-      - "9292:9292"
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      DISPLAY: ":0"
