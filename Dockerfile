@@ -23,7 +23,7 @@ RUN pip install mss requests
 COPY . .
 
 # Expose ports (if needed)
-EXPOSE 8080
+EXPOSE 9292
 RUN google-chrome --version
 # Run the Python script when the container launches
 # ENTRYPOINT ["python", "main.py"]
