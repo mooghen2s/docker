@@ -27,9 +27,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build . -t chriskm12/sad:1010
+      run: |
+        echo run build
+        #docker build . -t chriskm12/sad:1010
     - name: push docker
-      run: docker push chriskm12/sad:1010
+      run: |
+        echo run push
+        #docker push chriskm12/sad:1010
 
     - name: Run Docker container
       run: docker run -d -p 8080:8080 --name my-python-app chriskm12/sad:1010
@@ -47,7 +51,8 @@ jobs:
         echo "Container did not start in time"
         docker logs my-python-app
         exit 1
-
     - name: Display Docker container logs
       if: always()
       run: docker logs my-python-app
+    - run: |
+        ls
