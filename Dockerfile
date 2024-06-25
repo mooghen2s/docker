@@ -24,6 +24,6 @@ COPY . .
 
 # Expose ports (if needed)
 EXPOSE 8080
-
+RUN google-chrome --version
 # Run the Python script when the container launches
-CMD ["python", "main.py"]
+ENTRYPOINT ["python", "main.py"]
