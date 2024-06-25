@@ -27,3 +27,4 @@ EXPOSE 8080
 RUN google-chrome --version
 # Run the Python script when the container launches
 # ENTRYPOINT ["python", "main.py"]
+CMD ["python", "main.py"]
